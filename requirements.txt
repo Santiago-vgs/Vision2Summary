@@ -6,3 +6,7 @@ pandas
 matplotlib
 google-generativeai
 streamlit
+
+#easy ocr dependancies
+easyocr
+requests
