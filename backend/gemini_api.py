@@ -1,6 +1,7 @@
 import os
 import google.generativeai as genai
 
+
 # The new, correct way to set the API key is using genai.configure().
 # It's a best practice to load the key from an environment variable.
 api_key = os.getenv("GEMINI_API_KEY")
