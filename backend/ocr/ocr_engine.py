@@ -3,6 +3,8 @@ import cv2
 
 from preprocessing import binarisation
 from preprocessing import noise_removal
+from preprocessing import upscaling
+from preprocessing import sharpness
 
 
 image_path = "/Users/santiagovargas/Desktop/Vision2Summary/backend/ocr/test2.jpeg"
@@ -18,20 +20,18 @@ else:
     # It also saves 'grayscale_test.jpeg' internally.
     gray_image = binarisation(image)
 
-    # 2. Apply noise removal to the *output* of the binarisation step.
-    # The 'noise_removal' function should return the denoised NumPy array.
-    #final_processed_image = noise_removal(gray_image)
-
-    # 3. Run OCR on the final processed NumPy array.
-    # pytesseract.image_to_string can often handle NumPy arrays directly.
-
-
    ##### extracted_text = pytesseract.image_to_string(final_processed_image)
 
-    ####### TESTING BINARISATION ######
+   ### TESTING UP SCLAING #####
+    upscaled_image = upscaling(gray_image)
 
-    extracted_text = pytesseract.image_to_string(gray_image)
+    ####### TESTING SHARPNESS #######
+    final_processed_image = sharpness(upscaled_image)
 
-    print("--- Extracted Text ---")
+
+   ##### OUTPUT ########
+    extracted_text = pytesseract.image_to_string(final_processed_image)
+
+    print("--- Extracted Text ---") 
     print(extracted_text)
     
