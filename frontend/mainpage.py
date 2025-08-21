@@ -28,7 +28,14 @@ st.set_page_config(page_title="Vision2Summary", page_icon="🤖", layout="center
 st.title("Vision2Summary")
 st.markdown("Upload an image and have the analyse and produce summaries.")
 
-image_uplaod = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+#image_uplaod = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+# The file uploader is now configured to accept multiple files.
+uploaded_files = st.file_uploader(
+    "Choose one or more PNG or JPEG files",
+    type=['png', 'jpg', 'jpeg'],
+    accept_multiple_files=True
+)
 
 with st.form("my_text_form"):
     # Text input widget
