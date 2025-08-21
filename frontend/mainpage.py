@@ -37,18 +37,6 @@ uploaded_files = st.file_uploader(
     accept_multiple_files=True
 )
 
-with st.form("my_text_form"):
-    # Text input widget
-    user_text = st.text_area("Enter your text:")
 
-    # Submit button for the form
-    submit_button = st.form_submit_button("Submit Text")
-
-# Process the submitted data
-if submit_button:
-    if user_text:
-        st.success(f"You submitted: {user_text}")
-    else:
-        st.warning("Please enter some text before submitting.")
-
-
+ 
+  
