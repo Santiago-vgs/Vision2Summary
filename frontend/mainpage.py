@@ -40,9 +40,27 @@ for message in st.session_state.messages:
 
 prompt = st.chat_input("Enter a prompt")
 if prompt:
-    ##show user message, in container
+    # Show user message in a container
     with st.chat_message("user"):
         st.markdown(prompt)
-    #add user input to chat history
+    
+    # Add user input to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
+    # The entire assistant response block is now inside this 'if' statement
+    # This prevents the `TypeError` from happening on the initial page load.
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        full_response = ""
+        
+        try:
+            for chunk in model.generate_content(prompt, stream=True):
+                full_response += chunk.text
+                message_placeholder.markdown(full_response + "▌")
+            message_placeholder.markdown(full_response)
+        except Exception as e:
+            st.error(f"An error occurred while generating content: {e}")
+            st.stop()
+            
+    # Add the AI response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
